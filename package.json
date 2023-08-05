@@ -1,0 +1,17 @@
+{
+	"name": "log4js-layout-json",
+	"version": "0.0.0",
+	"license": "Apache-2.0",
+	"funding": "https://github.com/sponsors/xseman",
+	"homepage": "https://github.com/xseman/log4js-layout-json#readme",
+	"description": "TypeScript RESTful Web Services",
+	"author": "Filip Seman <filip.seman@pm.me>",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xseman/log4js-layout-json.git"
+	},
+	"type": "module",
+	"scripts": {},
+	"dependencies": {},
+	"devDependencies": {}
+}
