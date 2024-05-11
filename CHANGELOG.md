@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.1](https://github.com/xseman/log4js-layout-json/compare/v0.1.0...v0.1.1) (2024-05-11)
+
+
+### Bug Fixes
+
+* missing d.ts function declaration ([1b9b730](https://github.com/xseman/log4js-layout-json/commit/1b9b7309b8cdad6bb962dcf90178fb721d99daa7))
+
+
+### Documentation
+
+* fix typo ([f004bc5](https://github.com/xseman/log4js-layout-json/commit/f004bc5a6febd8c450fb13ebeb0e7d3b0e64e1bb))
+
+
+### Maintenance
+
+* cleanup release ([23f910f](https://github.com/xseman/log4js-layout-json/commit/23f910fd4dae9d2acb9c01aad85446fcc10a2fbc))
+
 ## 0.1.0 (2024-05-11)
 
 
