@@ -4,14 +4,42 @@
 	"license": "Apache-2.0",
 	"funding": "https://github.com/sponsors/xseman",
 	"homepage": "https://github.com/xseman/log4js-layout-json#readme",
-	"description": "TypeScript RESTful Web Services",
+	"description": "json layout module for log4js",
 	"author": "Filip Seman <filip.seman@pm.me>",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/xseman/log4js-layout-json.git"
 	},
 	"type": "module",
-	"scripts": {},
-	"dependencies": {},
-	"devDependencies": {}
+	"scripts": {
+		"build": "tsc",
+		"pretest": "tsc",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"@types/node": "~18.18.0",
+		"dprint": "^0.45.0",
+		"ts-node": "~10.9.0",
+		"typescript": "5.4.5"
+	},
+	"peerDependencies": {
+		"log4js": ">=6"
+	},
+	"types": "./dist/index.d.ts",
+	"module": "./dist/index.js",
+	"exports": {
+		".": {
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/*.test.*"
+	],
+	"engines": {
+		"node": ">=18.18",
+		"npm": ">=7"
+	}
 }
