@@ -1,6 +1,6 @@
 # log4js layout - json
 
-Simple json layouy module for [log4js][log4js_github].
+Simple json layout module for [log4js][log4js_github].
 
 [log4js_github]: https://log4js-node.github.io/log4js-node/
 
