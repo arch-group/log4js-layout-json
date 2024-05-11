@@ -3,14 +3,6 @@ import { isNativeError } from "node:util/types";
 
 import type log4js from "log4js";
 
-declare module "log4js" {
-	interface LayoutsParam {
-		jsonLayout: Config & {
-			type: "log4js-layout-json";
-		};
-	}
-}
-
 interface Output {
 	time: Date; // ISO-8601 format
 	category: string; // categoy name of log4js instance
