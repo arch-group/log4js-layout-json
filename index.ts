@@ -53,7 +53,7 @@ const defaults: Config = {
 	withContext: true,
 };
 
-module.exports = function jsonLayout(config: Config): log4js.LayoutFunction {
+export function jsonLayout(config: Config): log4js.LayoutFunction {
 	config = Object.assign(config, defaults);
 
 	return function layout(event: log4js.LoggingEvent): string {
@@ -62,4 +62,6 @@ module.exports = function jsonLayout(config: Config): log4js.LayoutFunction {
 		const output = JSON.stringify(formated);
 		return output;
 	};
-};
+}
+
+module.exports = jsonLayout;

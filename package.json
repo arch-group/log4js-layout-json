@@ -10,7 +10,6 @@
 		"type": "git",
 		"url": "git+https://github.com/xseman/log4js-layout-json.git"
 	},
-	"type": "module",
 	"scripts": {
 		"build": "tsc",
 		"pretest": "tsc",
