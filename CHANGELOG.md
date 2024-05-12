@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.2](https://github.com/arch-group/log4js-layout-json/compare/v0.1.1...v0.1.2) (2024-05-12)
+
+
+### Maintenance
+
+* add cjs export ([a457af5](https://github.com/arch-group/log4js-layout-json/commit/a457af5dd7227178fd66990f29ccbac535444aa3))
+
+
+### Refactors
+
+* **types:** make config optional ([713fff8](https://github.com/arch-group/log4js-layout-json/commit/713fff80aa46b800ca037435a487cff4e55145ff))
+
 ## [0.1.1](https://github.com/xseman/log4js-layout-json/compare/v0.1.0...v0.1.1) (2024-05-11)
 
 
