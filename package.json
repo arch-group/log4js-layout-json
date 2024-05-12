@@ -26,10 +26,10 @@
 		"log4js": ">=6"
 	},
 	"types": "./dist/index.d.ts",
-	"module": "./dist/index.js",
 	"exports": {
 		".": {
-			"import": "./dist/index.js"
+			"import": "./dist/index.js",
+			"require": "./dist/index.js"
 		}
 	},
 	"files": [
