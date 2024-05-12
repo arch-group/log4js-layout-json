@@ -3,12 +3,12 @@
 	"version": "0.1.2",
 	"license": "Apache-2.0",
 	"funding": "https://github.com/sponsors/xseman",
-	"homepage": "https://github.com/xseman/log4js-layout-json#readme",
+	"homepage": "https://github.com/arch-group/log4js-layout-json#readme",
 	"description": "json layout module for log4js",
 	"author": "Filip Seman <filip.seman@pm.me>",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/xseman/log4js-layout-json.git"
+		"url": "git+https://github.com/arch-group/log4js-layout-json.git"
 	},
 	"scripts": {
 		"build": "tsc",
