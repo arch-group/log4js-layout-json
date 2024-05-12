@@ -64,4 +64,5 @@ export function jsonLayout(config?: Config): log4js.LayoutFunction {
 	};
 }
 
+export default jsonLayout;
 module.exports = jsonLayout;
