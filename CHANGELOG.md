@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.3](https://github.com/arch-group/log4js-layout-json/compare/v0.1.2...v0.1.3) (2024-05-12)
+
+
+### Bug Fixes
+
+* default export for cjs ([8f01869](https://github.com/arch-group/log4js-layout-json/commit/8f018697c552fbfdad4817dafb02eb1aaf0b8543))
+
+
+### Documentation
+
+* update repo origin ([ba3c684](https://github.com/arch-group/log4js-layout-json/commit/ba3c6844a6844d83700e3d3e134c9ccede3bdb2f))
+
 ## [0.1.2](https://github.com/arch-group/log4js-layout-json/compare/v0.1.1...v0.1.2) (2024-05-12)
 
 
