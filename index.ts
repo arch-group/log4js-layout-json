@@ -1,42 +1,90 @@
+import path from "node:path";
+import url from "node:url";
 import util from "node:util";
 import { isNativeError } from "node:util/types";
 
 import type log4js from "log4js";
 
 interface Output {
-	time: Date; // ISO-8601 format
-	category: string; // categoy name of log4js instance
-	level: string; // log4js.Level.levelStr;
-	msg: string; // data passed to log argument, formated using `util.format`
+	/**
+	 * ISO-8601 format
+	 */
+	time: Date;
+	/**
+	 * Category name of log4js instance.
+	 */
+	category: string;
+	/**
+	 * log4js.Level.levelStr
+	 */
+	level: string;
+	/**
+	 * Data passed to log argument, formatted using `util.format`.
+	 */
+	msg?: string;
+	/**
+	 * The name of the file where the log message originated
+	 */
+	file_name?: string;
+	/**
+	 * The name of the function where the log message originated
+	 */
+	function_name?: string;
 }
 
-function formatter(
-	event: log4js.LoggingEvent,
-	config: Config,
-): Output {
-	let output = {
+/**
+ * Parses the file name from a logging event
+ */
+function parseFileName(loggingEvent: log4js.LoggingEvent): string | undefined {
+	let filename = loggingEvent.fileName || "";
+	if (filename.startsWith("file://")) {
+		filename = url.fileURLToPath(filename);
+	}
+
+	return filename.split(path.sep).at(-1);
+}
+
+/**
+ * Formats a log event into the desired output format
+ */
+function format(event: log4js.LoggingEvent, config?: Config): Output {
+	const output: Output = {
 		time: event.startTime,
 		category: event.categoryName,
 		level: event.level.levelStr,
-		msg: "",
-	} as Output;
+	};
 
-	if (config.withContext) {
+	if (config?.includeContext) {
 		Object.assign(output, event.context);
 	}
 
-	let messages: Array<any> | undefined;
-	if (Array.isArray(event.data)) {
-		messages = event.data;
-	} else {
-		messages = [event.data];
+	if (config?.includeFunctionName && event.functionName) {
+		output.function_name = event.functionName;
 	}
 
-	messages = messages
+	if (config?.includeFileName) {
+		const filename = parseFileName(event);
+		if (filename) {
+			output.file_name = filename;
+		}
+	}
+
+	let msgs: Array<any> | undefined;
+	if (Array.isArray(event.data)) {
+		msgs = event.data;
+	} else {
+		msgs = [event.data];
+	}
+
+	msgs = msgs
 		.filter((m) => isNativeError(m) || typeof m !== "object")
 		.filter(Boolean);
 
-	output.msg = util.format(...messages);
+	output.msg = util.format(...msgs);
+
+	if (output.msg === undefined) {
+		delete output.msg;
+	}
 
 	return output;
 }
@@ -44,25 +92,41 @@ function formatter(
 export interface Config {
 	/**
 	 * Include context added using `log.addContext()`
+	 *
 	 * @default true
 	 */
-	withContext?: boolean;
+	includeContext?: boolean;
+	/**
+	 * Include function name in json output.
+	 *
+	 * @default false
+	 */
+	includeFileName?: boolean;
+	/**
+	 * Include function name in json output.
+	 *
+	 * @requires log4js>=6.7
+	 * @default false
+	 */
+	includeFunctionName?: boolean;
 }
 
-const defaults: Config = {
-	withContext: true,
-};
+const defaults = {
+	includeContext: true,
+	includeFileName: false,
+	includeFunctionName: false,
+} satisfies Config;
 
-export function jsonLayout(config?: Config): log4js.LayoutFunction {
-	config = Object.assign({}, config, defaults);
+/**
+ * Creates a JSON layout function for log4js.
+ */
+export function layout(config?: Config): log4js.LayoutFunction {
+	config = Object.assign({}, defaults, config);
 
 	return function layout(event: log4js.LoggingEvent): string {
-		const formated = formatter(event, config);
-
+		const formated = format(event, config);
 		const output = JSON.stringify(formated);
+
 		return output;
 	};
 }
-
-export default jsonLayout;
-module.exports = jsonLayout;

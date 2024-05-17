@@ -45,7 +45,7 @@ Each log object contains the following properties:
 
 ```ts
 import log4js from "log4js";
-import jsonLayout from "log4js-json-layout";
+import { layout as jsonLayout } from "log4js-json-layout";
 
 log4js.addLayout("json", jsonLayout);
 ```
@@ -59,6 +59,8 @@ log4js.configure({
 			type: "stdout",
 			layout: {
 				type: "json",
+				includeFileName: true,
+				includeFunctionName: true,
 			},
 		},
 	},
